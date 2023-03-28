@@ -5,4 +5,3 @@ const postsController = require('../controllers/posts')
 
 router.get('/post1', postsController.new_post)
 module.exports = router
-console.log(module)
