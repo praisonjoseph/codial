@@ -2,6 +2,12 @@ const express = require('express')
 const app = express()
 const port = 8000;
 const path = require('path')
+const expresLayouts = require('express-ejs-layouts')
+
+app.use(express.static('./assets'))
+app.use(expresLayouts)
+app.set("layout extractStyles", true)
+app.set("layout extractScripts", true)
 
 // app routes
 app.use('/', require('./routes/index'))
