@@ -1,5 +1,6 @@
 home = function(req, res) {
-    // return res.send('<h1> This is page from Codial </h1>')
+    console.log(req.cookies)
+    res.cookie('user_id', 25)
     var ob = {
         title: "Social media",
     }
