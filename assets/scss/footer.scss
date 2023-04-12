@@ -1,0 +1,14 @@
+footer {
+    display: flex;
+    justify-content: flex-start;
+    background-color: grey;
+    color: white;
+    padding-left: 15px;
+    ul {
+        list-style: none;
+        a {
+            text-decoration: none;
+            color: white;
+        }
+    }
+}

@@ -14,8 +14,8 @@ const sassMiddleware = require('node-sass-middleware')
 
 app.use(sassMiddleware({
     /* Options */
-    src: '/assets/scss',
-    dest: path.join('/css', '/assets'),
+    src: './assets/scss',
+    dest: './assets/css',
     debug: true,
     outputStyle: 'extended',
     prefix:  '/css'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
