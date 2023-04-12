@@ -7,12 +7,19 @@ module.exports.profile = function (req, res) {
 }
 
 module.exports.signup = function (req, res) {
+    if(req.isAuthenticated()) {
+        return res.redirect('/users/profile')
+    }
     return res.render('users_signup', {
         title: "signup page"
     })
 }
 
+
 module.exports.login = function (req, res) {
+    if(req.isAuthenticated()) {
+        return res.redirect('/users/profile')
+    }
     return res.render('users_login', {
         title: "login page"
     })
@@ -54,7 +61,14 @@ module.exports.create = async function (req, res) {
 
 //sign and create a session 
 
-module.exports.create_session = function (req, res) {
-    console.log(req.body)
-    return res.redirect('back')
+module.exports.createSession = function (req, res) {
+    // console.log(req.body)
+    return res.redirect('/')
 }
+
+module.exports.destroySession = function(req, res, next){
+    req.logout(function(err) {
+      if (err) { return next(err); }
+      res.redirect('/');
+    });
+  }
