@@ -1,10 +1,15 @@
-home = function(req, res) {
-    console.log(req.cookies)
-    // res.cookie('user_id', 25)
-    var ob = {
-        title: "Social media",
+const Post = require('../models/post')
+
+const home = async function (req, res) {
+    try {
+        const PostList = await Post.find().populate('user')
+        // console.log(PostList[0]); 
+        // console.log(PostList[0].populated('user'));  '5144cf8050f071d979c118a7'
+        return res.render('home', { title: "Codial | Home", post_items: PostList })
+    } catch (err) {
+        console.log(err)
     }
-    return res.render('home',  ob)
+    
 }
-module.exports = {home}
+module.exports = { home }
 
