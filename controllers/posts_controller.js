@@ -1,11 +1,13 @@
 const Post = require('../models/post')
 
-module.exports.new_post = function (req, res) {
-    // return res.end("<h1> Posts page </h1>")
-    return res.render('posts', {
-        title: "Post page"
-    })
-}
+// module.exports.post_list = async function (req, res) {
+//     const post_item = await Post.findById({ _id: req.params.postId })
+//     return res.render('posts', {
+//         title: "Post page",
+//         post_item: post_item
+
+//     })
+// }
 
 module.exports.create = async function (req, res) {
     try {

@@ -4,6 +4,6 @@ const passport = require('passport')
 const postsController = require('../controllers/posts_controller')
 
 
-router.get('/post1', postsController.new_post)
+// router.get('/:postId', postsController.post_list)
 router.post('/create',passport.checkAuthentication,  postsController.create)
 module.exports = router
