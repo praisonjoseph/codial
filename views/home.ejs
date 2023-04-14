@@ -16,6 +16,9 @@
             <div class="card">
                 <li>
                     <p>
+                        <% if ((locals.user) && (locals.user.id==post.user.id)) { %>
+                            <a href="/posts/destroy/<%= post._id %>">x</a>
+                        <% } %>
                         <small>
                             <%= post.user.name %>
                         </small>
@@ -34,14 +37,14 @@
 
                                 <div id="post-comments-list">
                                     <ul>
-                                    <% post.comments.forEach(comment=> { %>
-                                        <p>
-                                            <small>
-                                                <%= comment.user.name %>
-                                            </small>
-                                            <%= comment.content %>
-                                        </p>
-                                        <% }) %>
+                                        <% post.comments.forEach(comment=> { %>
+                                            <p>
+                                                <small>
+                                                    <%= comment.user.name %>
+                                                </small>
+                                                <%= comment.content %>
+                                            </p>
+                                            <% }) %>
                                     </ul>
 
                                 </div>

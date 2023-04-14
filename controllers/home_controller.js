@@ -10,7 +10,7 @@ const home = async function (req, res) {
                 path: 'user'
             }
         })
-        console.log(PostList[0]); 
+        // console.log(PostList[0]); 
         // console.log(PostList[0].populated('user'));  '5144cf8050f071d979c118a7'
         return res.render('home', { title: "Codial | Home", post_items: PostList })
     } catch (err) {

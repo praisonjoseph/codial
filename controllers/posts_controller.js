@@ -1,13 +1,6 @@
 const Post = require('../models/post')
+const Comment = require('../models/comment')
 
-// module.exports.post_list = async function (req, res) {
-//     const post_item = await Post.findById({ _id: req.params.postId })
-//     return res.render('posts', {
-//         title: "Post page",
-//         post_item: post_item
-
-//     })
-// }
 
 module.exports.create = async function (req, res) {
     try {
@@ -27,4 +20,21 @@ module.exports.create = async function (req, res) {
         return res.status(500).send('Bad Request')
     };
 
+}
+
+
+module.exports.delete = async function (req, res) {
+    try {
+        console.log(req.params.Id)
+        const post = await Post.findById(req.params.Id)
+        if (post.user == req.user.id) {
+            await Post.findByIdAndDelete(req.params.Id)
+            await Comment.deleteMany({post: req.params.Id})
+            return res.redirect('back')
+        }
+
+    } catch (err) {
+        console.log(err)
+        return res.redirect('back')
+    }
 }
