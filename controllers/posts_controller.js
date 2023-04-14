@@ -25,7 +25,7 @@ module.exports.create = async function (req, res) {
 
 module.exports.delete = async function (req, res) {
     try {
-        console.log(req.params.Id)
+        // console.log(req.params.Id)
         const post = await Post.findById(req.params.Id)
         if (post.user == req.user.id) {
             await Post.findByIdAndDelete(req.params.Id)

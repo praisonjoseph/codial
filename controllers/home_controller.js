@@ -4,6 +4,7 @@ const home = async function (req, res) {
     try {
         const PostList = await Post.find()
         .populate('user')
+        // .populate('comments')
         .populate({
             path: 'comments',
             populate: {

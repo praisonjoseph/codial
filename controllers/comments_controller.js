@@ -11,11 +11,7 @@ module.exports.create = async function (req, res) {
                 post: req.body.post_id
             })
             // console.log(post)
-            post.comments.push(comment)
-            // await comment.save().then(savedComment => {
-            //     console.log(savedComment);
-            // })
-            
+            post.comments.push(comment)          
             await post.save().then(savedPost => {
                 console.log(savedPost);
             })
@@ -29,21 +25,16 @@ module.exports.create = async function (req, res) {
 module.exports.delete = async function (req, res) {
     try {
         const comment = await Comment.findById(req.params.Id)
-        if (post) {
-            const comment = await Comment.create({
-                content: req.body.content,
-                user: req.user._id,
-                post: req.body.post_id
-            })
-            // console.log(post)
-            post.comments.push(comment)
-            
-            await post.save().then(savedPost => {
-                console.log(savedPost);
-            })
+        console.log(comment, comment.post, req.user.id)
+        if (comment.user == req.user.id) {
+            await Comment.findByIdAndDelete(req.params.Id)
+            const post = await Post.findOne({_id: comment.post})
+            post.comments.pull(req.params.Id)   
+            post.save()
         }
         return res.redirect('/')
     } catch (err) {
         console.log(err)
+        return res.redirect('/')
     }
 }
