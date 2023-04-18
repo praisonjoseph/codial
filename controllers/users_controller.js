@@ -1,9 +1,15 @@
 const User = require('../models/user')
 
-module.exports.profile = function (req, res) {
+module.exports.profile = async function (req, res) {
+    try {
+    const user = await User.findById(req.params.id)
     return res.render('users_profile', {
-        title: "Profile page"
+        title: "Profile page",
+        profile_user: user
     })
+}  catch (err) {
+    console.log(err)
+}
 }
 
 module.exports.signup = function (req, res) {

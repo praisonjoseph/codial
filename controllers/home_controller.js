@@ -1,4 +1,5 @@
 const Post = require('../models/post')
+const User = require('../models/user')
 
 const home = async function (req, res) {
     try {
@@ -13,7 +14,8 @@ const home = async function (req, res) {
         })
         // console.log(PostList[0]); 
         // console.log(PostList[0].populated('user'));  '5144cf8050f071d979c118a7'
-        return res.render('home', { title: "Codial | Home", post_items: PostList })
+        const user = await User.find()
+        return res.render('home', { title: "Codial | Home", post_items: PostList, all_users: user })
     } catch (err) {
         console.log(err)
     }

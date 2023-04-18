@@ -5,7 +5,7 @@ const session = require('express-session')
 const UsersController = require('../controllers/users_controller')
 
 
-router.get('/profile', passport.checkAuthentication, UsersController.profile)
+router.get('/profile/:id', passport.checkAuthentication, UsersController.profile)
 router.get('/signup', UsersController.signup)
 router.get('/login', UsersController.login)
 router.get('/logout', UsersController.destroySession);
