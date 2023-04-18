@@ -1,5 +1,5 @@
-<h1>Codial/<%= title %>
-</h1>
+<link rel="stylesheet" href="/css/home.css">
+
 <div id="home-container">
     <section id="feed-posts">
         <h4>Posts</h4>
@@ -8,16 +8,16 @@
                 <textarea name="content" id="" cols="30" rows="3" placeholder="Type Here" required></textarea>
                 <input type="submit" value="Post">
             </form>
-            <% } %>
-    </section>
-    <section id="posts-list-container">
-        <ul>
-            <% post_items.forEach(post=> { %>
-                <%- include('_post', {post: post}) %>
-                    <% }) %>
-        </ul>
-    </section>
+        <% } %>
 
+        <div id="posts-list-container">
+            <ul>
+                <% post_items.forEach(post=> { %>
+                    <%- include('_post', {post: post}) %>
+                <% }) %>
+            </ul>
+        </div>
+    </section>
     <section id="user-friends">
         <h4>Friends</h4>
         <% for (u of all_users) { %>
