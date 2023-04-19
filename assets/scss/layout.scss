@@ -1,16 +1,16 @@
 
-body {
+html, body {
     margin: 0;
+    height: 100%;
     #layout-main {
-        height: 100%;
+        min-height: 72%;
     }
+    // footer {
+    //     position: sticky;
+    //     bottom: 0px;
+    //     height: 10vh;
+    //     padding: 8px 0;
+    //     z-index: 10;
 
-    footer {
-        position: sticky;
-        bottom: 0px;
-        height: 10vh;
-        padding: 8px 0;
-        z-index: 10;
-
-    }
+    // }
 }

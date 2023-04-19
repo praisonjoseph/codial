@@ -1,10 +1,5 @@
-body {
-  margin: 0; }
-  body #layout-main {
-    height: 100%; }
-  body footer {
-    position: sticky;
-    bottom: 0px;
-    height: 10vh;
-    padding: 8px 0;
-    z-index: 10; }
+html, body {
+  margin: 0;
+  height: 100%; }
+  html #layout-main, body #layout-main {
+    min-height: 72%; }

@@ -10,15 +10,17 @@ module.exports.create = async function (req, res) {
                 user: req.user._id,
                 post: req.body.post_id
             })
-            // console.log(post)
             post.comments.push(comment)          
             await post.save().then(savedPost => {
-                console.log(savedPost);
+                //console.log(savedPost);
+                req.flash('success', 'Comment Published')
+                return res.redirect('/')
             })
         }
         return res.redirect('/')
     } catch (err) {
-        console.log(err)
+        req.flash('error', err)
+        return res.redirect('/')
     }
 }
 
@@ -31,10 +33,12 @@ module.exports.delete = async function (req, res) {
             const post = await Post.findOne({_id: comment.post})
             post.comments.pull(req.params.Id)   
             post.save()
+            req.flash('success', 'Comment Deleted')
+            return res.redirect('/')
         }
         return res.redirect('/')
     } catch (err) {
-        console.log(err)
+        req.flash('error', err)
         return res.redirect('/')
     }
 }
