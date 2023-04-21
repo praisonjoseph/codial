@@ -6,11 +6,21 @@ module.exports.create = async function (req, res) {
     try {
         const content = req.body.content
         const user_id = req.user._id
+        
         const post = new Post({
             content,
             user: user_id
         })
+
         await post.save().then(savedPost => {
+            if (req.xhr) {
+                return res.status(200).json({
+                    data: {
+                        post: savedPost
+                    },
+                    message: 'Post Created!'
+                })
+            }
             req.flash('success', 'Post Published')
             return res.redirect('/')
 
