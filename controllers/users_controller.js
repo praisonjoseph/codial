@@ -33,7 +33,7 @@ module.exports.signup = function (req, res) {
         return res.redirect('/users/profile')
     }
     return res.render('users_signup', {
-        title: "signup page"
+        title: "Signup"
     })
 }
 
@@ -44,7 +44,7 @@ module.exports.login = function (req, res) {
     }
     
     return res.render('users_login', {
-        title: "login page"
+        title: "Login"
     })
 }
 

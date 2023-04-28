@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/profile.css">
    
-    <h1>Users/Profile Page<%= title %></h1>
+    <h1><%= title %></h1>
 
     <% if (user.id == profile_user.id) { %> 
         <form action="/users/update/<%= profile_user.id %>" method="post">
