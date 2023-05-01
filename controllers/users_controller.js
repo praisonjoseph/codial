@@ -15,16 +15,32 @@ module.exports.profile = async function (req, res) {
 module.exports.update = async function (req, res) {
     try {
         if (req.user.id == req.params.id) {
-            console.log(req.user.id, req.params.id, req.body)
-            const user = await User.findByIdAndUpdate(req.params.id, req.body)
-            await user.save()
-            return res.redirect('back')
+            // console.log(req.user.id, req.params.id, req.body)
+            // const user = await User.findByIdAndUpdate(req.params.id, req.body)
+            const user = await User.findById(req.params.id)
+            User.uploadAvatar(req, res, function(err){
+                if (err) {
+                    console.log('*****Multer Error: ', err)
+                }
+                user.name = req.body.name
+                user.email = req.body.email
+                //console.log(req.file)
+                if (req.file) {
+                    user.avatar = User.avatarPath + '/' + req.file.filename                   
+                }
+                user.save()
+                // console.log(user)
+                return res.redirect('back')
+            })
+
         } else {
+            req.flash('error', err)
             return res.status(401).send("Unauthorized")
         }
     } catch (err) {
+        req.flash('error', err)
         console.log(err)
-        return res.status(500).send("Server error")
+        return res.redirect('back')
     }
 }
 
