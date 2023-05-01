@@ -25,6 +25,7 @@ app.use(sassMiddleware({
 
 const { urlencoded } = require('express');
 app.use(express.static('./assets'))
+app.use('/uploads', express.static(__dirname + '/uploads'))
 app.use(expresLayouts)
 app.use(express.urlencoded())
 app.use(cookieParser())
